@@ -1,1 +1,1 @@
-# Webscrape-scalagit
+# Webscrape-scala
