@@ -1,1 +1,1 @@
-# Webscrape-scalagit
+# News headlines API
