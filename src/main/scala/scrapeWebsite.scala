@@ -13,8 +13,8 @@ object scrapeWebsite {
     listOfSites.foreach{ site =>
       val page = browser.get(site)
       for {
-        pageTitle <- page >> extractor("h1", texts)
-        headlines <- page >?> elementList("h3 a")
+        pageTitle <- page extract extractor("h1", texts)
+        headlines <- page tryExtract elementList("h3 a")
       } (println(pageTitle), headlines.foreach(title => println("-- " + title.text + " --")))
     }
   }
