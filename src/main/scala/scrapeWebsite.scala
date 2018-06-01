@@ -8,14 +8,21 @@ object scrapeWebsite {
 
     val browser = JsoupBrowser()
 
-    val listOfSites = List("https://news.sky.com/", "https://news.sky.com/technology", "https://news.sky.com/uk")
+    val listOfSites = List("https://news.sky.com/", "https://news.sky.com/technology", "https://news.sky.com/uk", "http://www.bbc.co.uk/news", "http://www.bbc.co.uk/news/technology")
 
     listOfSites.foreach{ site =>
       val page = browser.get(site)
-      for {
-        pageTitle <- page extract extractor("h1", texts)
-        headlines <- page tryExtract elementList("h3 a")
-      } (println(pageTitle), headlines.foreach(title => println("-- " + title.text + " --")))
+      site match {
+        case site if site.contains("sky") =>
+        for {
+          headlines <- page tryExtract elementList("h3 a")
+        } (println(site), headlines.foreach(title => println("-- " + title.text + " --")))
+        case site if site.contains("bbc") =>
+          for {
+            headlines <- page tryExtract elementList("a h3")
+          } (println(site), headlines.foreach(title => println("-- " + title.text + " --")))
+        case _ => println("No website matched.")
+      }
     }
   }
 }
