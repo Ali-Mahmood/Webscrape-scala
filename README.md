@@ -1,1 +1,2 @@
-# News headlines API
+# Webscrape-scala
+
