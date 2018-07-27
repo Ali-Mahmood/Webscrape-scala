@@ -3,7 +3,7 @@ import net.ruippeixotog.scalascraper.dsl.DSL._
 import net.ruippeixotog.scalascraper.dsl.DSL.Extract._
 import com.datastax.driver.core.Cluster
 
-object scrapeWebsite {
+object webScrape {
 
   def main(args: Array[String]) {
 
