@@ -3,7 +3,7 @@ import scala.collection.JavaConverters._
 
 class NewsDBHandler(session: Session){
 
-  def saveHeadlines(headlines: List[String], website: String): ResultSet ={
+  def saveHeadlines(headlinesWithHrefs: List[(String, String)], website: String): ResultSet ={
 
     val preparedStatement = session.prepare(
       s"""
@@ -12,7 +12,7 @@ class NewsDBHandler(session: Session){
        """.stripMargin
     )
 
-    val statement = preparedStatement.bind(headlines.asJava, website)
+    val statement = preparedStatement.bind(headlinesWithHrefs.asJava, website)
     session.execute(statement)
   }
 
