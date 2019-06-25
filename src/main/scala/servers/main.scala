@@ -1,9 +1,11 @@
-import net.ruippeixotog.scalascraper.browser._
+package servers
 
 import com.datastax.driver.core.Cluster
+import db.NewsDBHandler
+import net.ruippeixotog.scalascraper.browser.JsoupBrowser
+import scrapers.scrapeWebsites
 
 object main extends App {
-
 
     val cluster = Cluster.builder().addContactPoint("127.0.0.1").build()
     val session = cluster.connect("web_scrape")
@@ -17,4 +19,3 @@ object main extends App {
 
     cluster.close()
   }
-
